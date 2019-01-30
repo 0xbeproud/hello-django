@@ -1,0 +1,43 @@
+version: "3.4"
+
+services:
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: weproud/django
+    command: gunicorn djangoapi.wsgi:application --workers=3 --bind 0:8000
+    container_name: weproud-api
+    environment:
+      - DJANGO_SETTINGS_MODULE=djangoapi.settings.local
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    networks:
+      - weproud-net
+  nginx:
+    image: nginx:latest
+    container_name: weproud-nginx
+    ports:
+      - "80:80"
+#    volumes_from:
+#      - django
+    volumes:
+      - .:/app
+      - ./config/nginx:/etc/nginx/conf.d
+    depends_on:
+      - django
+    networks:
+      - weproud-net
+
+networks:
+  weproud-net:
+    external: true
+
+volumes:
+  weproud_data:
+
