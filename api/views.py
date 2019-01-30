@@ -3,13 +3,13 @@ import time
 
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
-from rest_framework.generics import GenericAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.throttling import UserRateThrottle
+from rest_framework.views import APIView
 
 
-class CacheDetail(GenericAPIView):
+class CacheDetail(APIView):
     permission_classes = [AllowAny, ]
 
     @method_decorator(cache_page(60 * 60 * 2))
@@ -18,7 +18,7 @@ class CacheDetail(GenericAPIView):
         return Response(data="ok with cache")
 
 
-class NoCacheDetail(GenericAPIView):
+class NoCacheDetail(APIView):
     permission_classes = [AllowAny, ]
 
     def get(self, request):
@@ -26,7 +26,7 @@ class NoCacheDetail(GenericAPIView):
         return Response(data="ok with no cache")
 
 
-class Throttle(GenericAPIView):
+class Throttle(APIView):
     throttle_classes = (UserRateThrottle,)
 
     def get(self, request):
@@ -34,5 +34,3 @@ class Throttle(GenericAPIView):
             'status': 'request was permitted'
         }
         return Response(content)
-
-

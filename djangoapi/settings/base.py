@@ -30,14 +30,12 @@ ROOT_DIR = os.path.abspath(os.path.dirname(__name__))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'v&1rtl!7k_d_&d@vym4_z*xxjb#qh#pp$p89zqzj999pubk(s^'
-# SECRET_KEY = get_env_variable("SHIELD_SECRET_KEY")
+SECRET_KEY = get_env_variable("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
 ALLOWED_HOSTS = []
-INTERNAL_IPS = ('127.0.0.1',)
 # Application definition
 
 INSTALLED_APPS = [
@@ -156,6 +154,7 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
     ),
     'DEFAULT_THROTTLE_CLASSES': (
         'rest_framework.throttling.AnonRateThrottle',
@@ -169,6 +168,11 @@ REST_FRAMEWORK = {
         'burst': '60/min',
         'sustained': '1000/day'
     },
+    # 'DEFAULT_PARSER_CLASSES': [
+    #     'rest_framework.parsers.FormParser',
+    #     'rest_framework.parsers.MultiPartParser',
+    #     'rest_framework.parsers.JSONParser',
+    # ],
     'EXCEPTION_HANDLER': 'api.handlers.exception_handler.api_exception_handler',
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 10,
@@ -205,8 +209,8 @@ REDOC_SETTINGS = {
     'PATH_IN_MIDDLE': False,
 }
 
-CLIENT_ID = 'pOzEbsvgg7GIHPbd5fLaxPWhpZxuCjVLqbGNSCrB'
-CLIENT_SECRET = 'rbQeQsszgiT4c7c6tbyLu0P5jCUOtDeVlgUI1WmaldSyZxyiJJTcFra7talhcYiu9ezje4zyScI7RD1Nepr8DewfyfDYyNR5L9Fx9E66ycGxw9KFww6R8AFMtGqf3wXm'
+CLIENT_ID = 'SXnedvooKEX38beLCubWh1Vf7es57nNDYYzmDGCC'
+CLIENT_SECRET = 'EGuJ4uiHdTNXYGjiFJTVS01FqMUD0QMyDQMcjnbG99ziUp3KhTluKumtvEqvfDrTYVGEoSrxhVnthMO650PB8Kp7noU4lp615byYOSYyJSmlwTtwF8WkBccoGKsPrpzq'
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = (
@@ -250,6 +254,10 @@ LOGGING = {
             'format': "%(asctime)s,%(msecs)d %(levelname)-6s [%(filename)s:%(lineno)d] - %(message)s",
         }
     },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG'
+    },
     'loggers': {
         'api': {
             'handlers': ['console'],
@@ -265,5 +273,3 @@ LOGGING = {
 }
 
 SESSION_COOKIE_NAME = 'oauth2server_sessionid'
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
