@@ -180,8 +180,6 @@ REST_FRAMEWORK = {
 
 SWAGGER_SETTINGS = {
     'USE_SESSION_AUTH': True,  # add Django Login and Django Logout buttons, CSRF token to swagger UI page
-    # 'LOGIN_URL': getattr(django.conf.settings, 'LOGIN_URL', None),  # URL for the login button
-    # 'LOGOUT_URL': getattr(django.conf.settings, 'LOGOUT_URL', None),  # URL for the logout button
     'LOGIN_URL': 'rest_framework:login',
     'LOGOUT_URL': 'rest_framework:logout',
     'SECURITY_DEFINITIONS': {
@@ -194,11 +192,12 @@ SWAGGER_SETTINGS = {
     'JSON_EDITOR': True,
     'OPERATIONS_SORTER': None,
     'TAGS_SORTER': None,
-    'DOC_EXPANSION': 'list',
+    'DOC_EXPANSION': 'none',
     'DEEP_LINKING': False,
     'SHOW_EXTENSIONS': True,
     'DEFAULT_MODEL_RENDERING': 'model',
-    'DEFAULT_MODEL_DEPTH': 2,
+    'DEFAULT_MODEL_DEPTH': 3,
+    'SHOW_COMMON_EXTENSIONS': True,
 }
 
 REDOC_SETTINGS = {
