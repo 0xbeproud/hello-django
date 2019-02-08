@@ -1,3 +1,6 @@
+amqp==2.4.1
+billiard==3.5.0.5
+celery==4.2.1
 certifi==2018.11.29
 chardet==3.0.4
 click==6.7
@@ -19,10 +22,12 @@ itypes==1.1.0
 Jinja2==2.10
 jsonpointer==1.14
 jsonschema==2.6.0
+kombu==4.3.0
 MarkupSafe==1.1.0
 mysql-connector-python==8.0.14
 mysqlclient==1.4.1
 oauthlib==3.0.0
+pep8==1.7.1
 protobuf==3.6.1
 pytz==2018.9
 PyYAML==3.13
@@ -37,3 +42,4 @@ swagger-spec-validator==2.4.3
 uritemplate==3.0.0
 urllib3==1.24.1
 validate-email==1.3
+vine==1.2.0
