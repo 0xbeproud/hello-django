@@ -1,6 +1,5 @@
-from djangoapi.settings.base import *
+from .base import *
 
-ALLOWED_HOSTS = ['django']
 DEBUG = True
 LOGGING = {
     'version': 1,
@@ -9,14 +8,6 @@ LOGGING = {
         'console': {
             'class': 'logging.StreamHandler',
             'formatter': 'verbose'
-        },
-        'file': {
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': 'debug.log',
-            'formatter': 'verbose',
-            'maxBytes': 1024 * 1024 * 100,
-            'backupCount': 10
-
         },
     },
     'formatters': {
@@ -41,10 +32,10 @@ LOGGING = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'local',
-        'USER': 'local',
-        'PASSWORD': 'local123',
-        'HOST': '192.168.65.2',
+        'NAME': 'weproud',
+        'USER': 'weproud',
+        'PASSWORD': 'weproud123',
+        'HOST': '127.0.0.1',
         'PORT': '3306',
         'ATOMIC_REQUESTS': True,
     }

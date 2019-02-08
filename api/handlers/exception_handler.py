@@ -20,8 +20,8 @@ def api_exception_handler(exc, context):
     # Call REST framework's default exception handler first,
     # to get the standard error response.
     response = exception_handler(exc, context)
-    print(f"response: {response}")
-    if response is not None:
+    print(f"response: {response}, {type(exc)}, {exc}")
+    if response:
         if isinstance(exc, ServiceException):
             response.data["code"] = exc.code
             response.data["detail"] = exc.detail

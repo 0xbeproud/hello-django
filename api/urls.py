@@ -1,14 +1,12 @@
 from django.urls import path
 
-from api.views import CacheDetail, NoCacheDetail
+from api.views import CacheDetail, NoCacheDetail, LoggingDetail, DemoList, ExceptionDetail
 
 urlpatterns = [
 
+    path('logging', LoggingDetail.as_view()),
     path('cache', CacheDetail.as_view()),
     path('no-cache', NoCacheDetail.as_view()),
-    # path('dapps/<int:dappid>/wallets', DappWalletList.as_view()),
-    # path('dapps/<int:dappid>/wallets/<str:address>', DappWalletDetail.as_view()),
-    # path('dapps/<int:dappid>/transactions', DappTransaction.as_view()),
-    # path('dapps/<int:dappid>/wallets/<str:address>/transactions', DappWalletTransaction.as_view()),
-
+    path('demo', DemoList.as_view()),
+    path('exception', ExceptionDetail.as_view()),
 ]

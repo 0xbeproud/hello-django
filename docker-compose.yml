@@ -9,7 +9,8 @@ services:
     command: gunicorn djangoapi.wsgi:application --workers=3 --bind 0:8000
     container_name: weproud-api
     environment:
-      - DJANGO_SETTINGS_MODULE=djangoapi.settings.local
+      - DJANGO_SETTINGS_MODULE=djangoapi.settings.production
+      - SECRET_KEY=&RW#}PQfg]7g6:ud>[YIz`J&YeUF-kR6;vQPa<Bo3^eBE_#<G~ # 따로 빼야함.
     dns:
       - 1.1.1.1
       - 8.8.8.8

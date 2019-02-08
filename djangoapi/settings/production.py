@@ -1,6 +1,6 @@
 from djangoapi.settings.base import *
 
-ALLOWED_HOSTS = ['weproud']
+ALLOWED_HOSTS = ['django']
 DEBUG = False
 LOGGING = {
     'version': 1,
