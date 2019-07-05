@@ -22,6 +22,8 @@ def get_env_variable(key):
         raise ImproperlyConfigured(f"Set the {key} environment variable")
 
 
+PHASE = 'base'
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = os.path.abspath(os.path.dirname(__name__))
@@ -30,7 +32,7 @@ ROOT_DIR = os.path.abspath(os.path.dirname(__name__))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = get_env_variable("SECRET_KEY")
+# SECRET_KEY = get_env_variable("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -51,9 +53,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_yasg',
     # 'debug_toolbar',
+    'django_celery_beat',
 
-    'users.apps.UsersConfig',
-    'api.apps.ApiConfig',
+    'users',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -230,6 +233,7 @@ OAUTH2_PROVIDER = {
     'ACCESS_TOKEN_EXPIRE_SECONDS': 86400,
     # 'REFRESH_TOKEN_EXPIRE_SECONDS': 86400 * 2,
 }
+
 
 LOGGING = {
     'version': 1,

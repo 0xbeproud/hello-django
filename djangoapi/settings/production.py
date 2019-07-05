@@ -1,5 +1,6 @@
-from djangoapi.settings.base import *
+from .base import *
 
+print(BASE_DIR)
 ALLOWED_HOSTS = ['django']
 DEBUG = False
 LOGGING = {

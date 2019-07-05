@@ -7,10 +7,10 @@ services:
       dockerfile: Dockerfile
     image: weproud/django
     command: gunicorn djangoapi.wsgi:application --workers=3 --bind 0:8000
-    container_name: weproud-api
+    container_name: api
     environment:
-      - DJANGO_SETTINGS_MODULE=djangoapi.settings.production
-      - SECRET_KEY=&RW#}PQfg]7g6:ud>[YIz`J&YeUF-kR6;vQPa<Bo3^eBE_#<G~ # 따로 빼야함.
+      DJANGO_SETTINGS_MODULE: djangoapi.settings.local
+      SECRET_KEY: "&RW#}PQfg]7g6:ud>[YIz`J&YeUF-kR6;vQPa<Bo3^eBE_#<G~" # 따로 빼야함.
     dns:
       - 1.1.1.1
       - 8.8.8.8
@@ -20,13 +20,12 @@ services:
       - .:/app
     networks:
       - weproud-net
+
   nginx:
     image: nginx:latest
-    container_name: weproud-nginx
+    container_name: nginx
     ports:
-      - "80:80"
-#    volumes_from:
-#      - django
+      - 80:80
     volumes:
       - .:/app
       - ./config/nginx:/etc/nginx/conf.d
@@ -35,10 +34,39 @@ services:
     networks:
       - weproud-net
 
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - 15672:15672
+      - 5672:5672
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin123
+      RABBITMQ_DEFAULT_VHOST: weproud
+    networks:
+      - weproud-net
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    environment:
+      - MYSQL_DATABASE=test
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=test123
+      - MYSQL_ROOT_PASSWORD=root123
+    ports:
+      - 3306:3306
+    volumes:
+      - weproud_db_data:/var/lib/mysql
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_520_ci
+    networks:
+      - weproud-net
+
 networks:
   weproud-net:
-    external: true
 
 volumes:
   weproud_data:
+  weproud_db_data:
 

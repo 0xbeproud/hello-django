@@ -1,0 +1,39 @@
+version: "3.4"
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - 15672:15672
+      - 5672:5672
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin123
+      RABBITMQ_DEFAULT_VHOST: /
+    networks:
+      - weproud-net
+
+#  mysql:
+#    image: mysql:5.7
+#    container_name: mysql
+#    environment:
+#      - MYSQL_DATABASE=test
+#      - MYSQL_USER=test
+#      - MYSQL_PASSWORD=test123
+#      - MYSQL_ROOT_PASSWORD=root123
+#    ports:
+#      - 3306:3306
+#    volumes:
+#      - weproud_db_data:/var/lib/mysql
+#    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_520_ci
+#    networks:
+#      - weproud-net
+
+networks:
+  weproud-net:
+
+volumes:
+  weproud_data:
+  weproud_db_data:
+
