@@ -35,7 +35,7 @@ LOGGING = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, '../../db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, '../db.sqlite3'),
     }
 }
 
@@ -46,7 +46,6 @@ CELERY_RESULT_PERSISTENT = 'json'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Asia/Seoul'
-CELERY_BEAT_SCHEDULE = 'django_celery_beat.schedulers:DatabaseScheduler'
 
 # DATABASES = {
 #     'default': {

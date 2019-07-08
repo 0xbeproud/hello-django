@@ -17,3 +17,11 @@ echo ${HOST_IP}
 (venv) venv ❯ pip install mysqlclient
 Requirement already satisfied: mysqlclient in ./venv/lib/python3.6/site-packages (1.4.1)
 ```
+
+### run celery beat and worker
+
+```bash
+celery -A djangoapi beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+
+celery -A djangoapi worker -l info  --loglevel=DEBUG
+```
