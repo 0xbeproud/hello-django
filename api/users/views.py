@@ -6,9 +6,9 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
+from api.users.serializers import CreateUserSerializer, TokenSerializer, GetTokenSerializer, RefreshTokenSerializer, \
+    RevokeTokenSerializer
 from djangoapi.settings.base import CLIENT_ID, CLIENT_SECRET
-from users.serializers import CreateUserSerializer, GetTokenSerializer, RefreshTokenSerializer, \
-    RevokeTokenSerializer, TokenSerializer
 
 logger = logging.getLogger(__name__)
 

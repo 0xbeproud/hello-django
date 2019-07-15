@@ -40,6 +40,12 @@ DEBUG = False
 ALLOWED_HOSTS = []
 # Application definition
 
+API_APPS = [
+    'base',
+    'cache',
+    'demo'
+]
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -55,8 +61,9 @@ INSTALLED_APPS = [
     # 'debug_toolbar',
     'django_celery_beat',
 
-    'users',
-    'api',
+    'api.base',
+    'api.users',
+    'api.demo',
     'schedulers',
 ]
 
@@ -177,7 +184,7 @@ REST_FRAMEWORK = {
     #     'rest_framework.parsers.MultiPartParser',
     #     'rest_framework.parsers.JSONParser',
     # ],
-    'EXCEPTION_HANDLER': 'api.handlers.exception_handler.api_exception_handler',
+    'EXCEPTION_HANDLER': 'api.handlers.api_exception_handler',
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 10,
 }
@@ -234,7 +241,6 @@ OAUTH2_PROVIDER = {
     'ACCESS_TOKEN_EXPIRE_SECONDS': 86400,
     # 'REFRESH_TOKEN_EXPIRE_SECONDS': 86400 * 2,
 }
-
 
 LOGGING = {
     'version': 1,

@@ -2,7 +2,7 @@ import logging
 
 from rest_framework.views import exception_handler
 
-from api.exceptions import ServiceException
+from api.base.exceptions import ServiceException
 
 logger = logging.getLogger(__name__)
 

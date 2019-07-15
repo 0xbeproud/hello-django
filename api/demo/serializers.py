@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from api.models import Demo
+from api.demo.models import Demo
 
 
 class CreateDemoRequestSerializer(serializers.ModelSerializer):
