@@ -16,6 +16,10 @@ echo ${HOST_IP}
 ~/labs/81k/django-api develop*
 (venv) venv ❯ pip install mysqlclient
 Requirement already satisfied: mysqlclient in ./venv/lib/python3.6/site-packages (1.4.1)
+
+or
+
+LDFLAGS="-L/usr/local/opt/openssl/lib" pip install mysqlclient
 ```
 
 ### run celery beat and worker
